@@ -33,7 +33,8 @@ class Main_menu:
                 
             elif player_choice == 3:
                 #run TPG
-                print("")
+                game3 = Trivia_quiz_game()
+                self.overall_score['trivia_quiz'] = game3.quiz_execution()
                 print("--------------------------------------------------------------")
 
             elif player_choice == 4:
@@ -125,8 +126,76 @@ class Rock_paper_scissor:
                 continue
         print(f"You won {self.win} time against computer in {self.attempt} match")
                     
+class Trivia_quiz_game:
+    def __init__(self):
+        self.questions = {
+            'Kings of Bhutan' : [
+                {
+                    '?': "Who is the current reigning king of Bhutan (as of 2025)?",
+                    'options': ['A. Jigme Singye Wangchuck', 'B. Jigme Khesar Namgyel Wangchuck', 'C. Jigme Dorji Wangchuck', 'D. Ugyen Wangchuck'],
+                    'answer': 'B'
+                },
+                {
+                    '?': "Which Bhutanese king introduced democracy to Bhutan before abdicating?",
+                    'options': ['A. Jigme Dorji Wangchuck', 'B. Jigme Singye Wangchuck', 'C. Ugyen Wangchuck', 'D.  Jigme Khesar Namgyel Wangchuck'],
+                    'answer': 'B'
+                },
+                {
+                    '?': "Which king is known as the 'Father of Modern Bhutan'?",
+                    'options': ['A. Jigme Dorji Wangchuck', 'B.  Jigme Singye Wangchuck', 'C. Ugyen Wangchuck', 'D. Jigme Khesar Namgyel Wangchuck'],
+                    'answer': 'A'
+                },
+                {
+                    '?': "What major policy did King Jigme Singye Wangchuck introduce in the 1970s?",
+                    'options': ['A. Free education for all', 'B. Gross National Happiness (GNH)', 'C. Bhutan’s first constitution', 'D. Abolishment of monarchy'],
+                    'answer': 'B'
+                }],
+            'Bhutanese Culture & Traditions' : [
+                {
+                    '?' : "What is the national sport of Bhutan?",
+                    'options' : ['A.Archery ', 'B.Football ', 'C.Cricket ','D.Khuru(Dart)'],
+                    'answer' : 'A'
+                },
+                {
+                    '?' : "Which famous Bhutanese festival features masked dances and religious performances?",
+                    'options' : ['A.Diwali ', 'B.Losar ', 'C.Rimdro ','D.Tsechu'],
+                    'answer' : 'A'
+                },
+                {
+                    '?' : "Which UNESCO World Heritage Site in Bhutan is known as the 'Tiger’s Nest'?",
+                    'options' : ['A.Punakha Dzong ', 'B.Trongsa Dzong ', 'C.Paro Taktsang ','D.Tak Chim'],
+                    'answer' : 'A'
+                }
+            ]
+        }
+    def quiz_execution(self):
+        print("\nWelcome to Trivia Pursuit!")
+        print("Select a category:")
+        categories = list(self.questions.keys())
+        for i in range(0,len(categories)-1):
+            print(f"{i}. {categories[i]}")
+            
+        try:
+            cat_choice = int(input("Enter category number: ")) - 1
+            selected_category = categories[cat_choice]
+        except (ValueError, IndexError):
+            print("Invalid category selection.")
+            return 0
+            
+        for question in self.questions[selected_category]:
+            print("\n" + question['question'])
+            for option in question['options']:
+                print(option)
                 
-           
+            user_answer = input("Your answer (A/B/C/D): ").upper()
+            if user_answer == question['answer']:
+                print("Correct!")
+                self.score += 1
+            else:
+                print(f"Wrong! The correct answer is {question['answer']}")
+                
+        print(f"\nYour score: {self.score}/{len(self.questions[selected_category])}")
+        return self.score
             
 
     
