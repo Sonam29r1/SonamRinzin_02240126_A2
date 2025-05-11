@@ -46,7 +46,7 @@ class Main_menu:
                 #run  Pokemon card binder manager
                 game4 = Pokemon_Binder() #Pokemon_Binder class is called and it is assigned to variable game
                 game4.menu_run() #from Pokemon_Binder class, function menu_run is called and list of functions is displayed
-                self.scoring.score_updater('pokemon_binder', game4.manager) #from overall_scoring_system class, score_updator function is called and score from the game is updated
+                self.scoring.score_updater('pokemon_binder', game4.manager.total_cards) #from overall_scoring_system class, score_updator function is called and score from the game is updated
                 print("★ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ★")
 
             elif player_choice == "5":
@@ -66,8 +66,8 @@ class Main_menu:
 #creating class for each game
 class Number_guessing:
     def __init__(self):
-        self.lowest_number = 0
-        self.highest_number = 9
+        self.lowest_number = 1
+        self.highest_number = 14
     def game_execution(self):
         number_to_be_guessed = random.randint(self.lowest_number,self.highest_number) #A random number between 0 and 9 is selected
         attempt = 0
@@ -76,7 +76,7 @@ class Number_guessing:
         min = 0
         while True:
             try: # used try to handle value error
-                print("I am thinking of a number between 0 and 15.\nCan you guess it?")
+                print("I am thinking of a number between 1 and 14.\nCan you guess it?")
                 print("★ ", "━"*40 ,"★")
                 player_guess = int(input("Your guess is : "))
                 print("★ ", "━"*40 ,"★")

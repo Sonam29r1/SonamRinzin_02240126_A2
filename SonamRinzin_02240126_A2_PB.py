@@ -7,6 +7,7 @@ class Pokemon_Binder_Manager:
         self.cards_per_page = 64  # 8x8 grid
         self.rows_per_page = 8 # 8 rows per page
         self.cols_per_page = 8 # 8 rows per colum
+        
 
     def calculate_position(self, pokedex_num):
         """
@@ -87,6 +88,11 @@ class Pokemon_Binder_Manager:
         
         print(f"\nTotal cards: {self.total_cards}") #Displays how many cards player have collected so far
         print(f"Completion: {(self.total_cards/self.max_pokedex)*100:.2f}%") # calculates and displays the percentage of card collection and round it to two decimals
+
+    def total_score(self):
+        score = self.total_cards
+        return score
+        
     
 
 
